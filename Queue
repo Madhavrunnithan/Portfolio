@@ -1,0 +1,79 @@
+Queue
+#include <stdio.h> 
+#include <stdlib.h> 
+struct node 
+{ 
+int data; 
+struct node *next; 
+} *front, *rear; 
+void enqueue() 
+{ 
+struct node *newNode, *temp; 
+newNode = (struct node *)malloc(sizeof(struct node)); 
+if (newNode == NULL) 
+printf("\nCannot allocate memory"); 
+else 
+{ 
+printf("\nEnter the element: "); 
+scanf("%d", &newNode->data); 
+newNode->next = NULL; 
+if (rear == NULL) 
+front = rear = newNode; 
+else 
+{ 
+rear->next = newNode; 
+rear = newNode; 
+} 
+} 
+} 
+void dequeue() 
+{ 
+struct node *temp; 
+if (front == NULL) 
+printf("\nThe queue is empty"); 
+else 
+{ 
+printf("\nThe deleted element is: %d\n", front->data); 
+temp = front; 
+front = front->next; 
+free(temp); 
+} 
+} 
+void display() 
+{ 
+struct node *temp; 
+int i; 
+temp = front; 
+if (front == NULL) 
+printf("\nThe list is empty"); 
+else 
+while (temp != NULL) 
+{ 
+printf("%d\t", temp->data); 
+temp = temp->next; 
+} 
+} 
+void main() 
+{ 
+int choice;
+do 
+{ 
+printf("\nEnter your choice:\n1: Enqueue\n2: Dequeue\n3: Display\n4: Exit\n"); 
+scanf("%d",&choice); 
+switch(choice){ 
+case 1: 
+enqueue(); 
+break; 
+case 2: 
+dequeue(); 
+break; 
+case 3: 
+display(); 
+break; 
+case 4: 
+exit(0); 
+default: 
+printf("\nInvalid Input"); 
+} 
+} while (choice != 4); 
+}
