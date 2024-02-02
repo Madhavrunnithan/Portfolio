@@ -1,0 +1,88 @@
+Stack
+#include <stdio.h> 
+#include <stdlib.h> 
+struct node 
+{ 
+int data; 
+struct node *next; 
+} *top; 
+void push() 
+{ 
+struct node *newNode; 
+newNode = (struct node *)malloc(sizeof(struct node)); 
+if (newNode == NULL) 
+printf("\nCannot allocate memory"); 
+else 
+{ 
+printf("\nEnter the element: "); 
+scanf("%d", &newNode->data); 
+newNode->next = NULL; 
+if (top == NULL) 
+top = newNode; 
+else 
+{ 
+newNode->next = top; 
+top = newNode; 
+} 
+} 
+} 
+void pop() 
+{ 
+struct node *temp; 
+if (top == NULL) 
+printf("\nUnderflow"); 
+else 
+{ 
+temp = top; 
+printf("\nThe deleted element is: %d\n", top->data); 
+if (top->next == NULL) 
+{ 
+top = NULL; 
+free(temp); 
+} 
+else 
+{ 
+top = top->next; 
+free(temp); 
+} 
+} 
+} 
+void display() 
+{ 
+struct node *temp; 
+int i; 
+temp = top; 
+if (top == NULL) 
+printf("\nThe stack is empty"); 
+else 
+while (temp != NULL)
+{ 
+printf("%d\t", temp->data); 
+temp = temp->next; 
+} 
+} 
+void main() 
+{ 
+int choice; 
+do 
+{ 
+printf("\nEnter your choice:\n1: Push\n2: Pop\n3: Display\n4: Exit\n"); 
+scanf("%d", &choice); 
+switch (choice) 
+{ 
+case 1: 
+push(); 
+break; 
+case 2: 
+pop(); 
+break; 
+case 3: 
+display(); 
+break; 
+case 4: 
+exit(0); 
+default: 
+printf("Invalid Input"); 
+} 
+} while (choice != 4); 
+}
